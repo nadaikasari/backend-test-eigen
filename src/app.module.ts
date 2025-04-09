@@ -8,15 +8,18 @@ import { BookService } from './app/book/book.service';
 import { PrismaBookRepository } from './infra/repositories/book.repository';
 import { PrismaService } from './infra/prisma/prisma.service';
 import { BookController } from './app/book/book.controller';
-import { LoansModule } from './app/loans/loans.module';
+import { LoanController } from './app/loan/loan.controller';
+import { LoanModule } from './app/loan/loan.module';
+import { LoanService } from './app/loan/loan.service';
+import { PrismaLoanRepository } from './infra/repositories/loan.repository';
 
 @Module({
   imports: [ ConfigModule.forRoot({
     isGlobal: true,
     }),
-    BookModule, MemberModule, LoansModule
+    BookModule, MemberModule, LoanModule
   ],
-  controllers: [AppController, BookController],
-  providers: [AppService, BookService, PrismaBookRepository, PrismaService],
+  controllers: [AppController, BookController, LoanController],
+  providers: [AppService, BookService, PrismaBookRepository, PrismaService, LoanService, PrismaLoanRepository],
 })
 export class AppModule {}
