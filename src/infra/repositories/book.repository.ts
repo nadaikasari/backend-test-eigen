@@ -19,16 +19,14 @@ export class PrismaBookRepository implements BookRepository {
     const skip = (page - 1) * limit;
   
     const books = await this.prisma.book.findMany({
-      where: {
-        stock: {
-          gt: 0,
-        },
-      },
       select: {
         book_code: true,
         title: true,
         author: true,
         stock: true,
+      },
+      orderBy: {
+        stock: 'desc',
       },
       skip,
       take: limit,
