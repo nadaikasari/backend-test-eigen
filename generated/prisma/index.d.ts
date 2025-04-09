@@ -3354,6 +3354,7 @@ export namespace Prisma {
     book_id: number | null
     borrowed_at: Date | null
     due_date: Date | null
+    is_returned: boolean | null
     returned_at: Date | null
   }
 
@@ -3363,6 +3364,7 @@ export namespace Prisma {
     book_id: number | null
     borrowed_at: Date | null
     due_date: Date | null
+    is_returned: boolean | null
     returned_at: Date | null
   }
 
@@ -3372,6 +3374,7 @@ export namespace Prisma {
     book_id: number
     borrowed_at: number
     due_date: number
+    is_returned: number
     returned_at: number
     _all: number
   }
@@ -3395,6 +3398,7 @@ export namespace Prisma {
     book_id?: true
     borrowed_at?: true
     due_date?: true
+    is_returned?: true
     returned_at?: true
   }
 
@@ -3404,6 +3408,7 @@ export namespace Prisma {
     book_id?: true
     borrowed_at?: true
     due_date?: true
+    is_returned?: true
     returned_at?: true
   }
 
@@ -3413,6 +3418,7 @@ export namespace Prisma {
     book_id?: true
     borrowed_at?: true
     due_date?: true
+    is_returned?: true
     returned_at?: true
     _all?: true
   }
@@ -3509,6 +3515,7 @@ export namespace Prisma {
     book_id: number
     borrowed_at: Date
     due_date: Date
+    is_returned: boolean
     returned_at: Date | null
     _count: BookLoanCountAggregateOutputType | null
     _avg: BookLoanAvgAggregateOutputType | null
@@ -3537,6 +3544,7 @@ export namespace Prisma {
     book_id?: boolean
     borrowed_at?: boolean
     due_date?: boolean
+    is_returned?: boolean
     returned_at?: boolean
     member?: boolean | MemberDefaultArgs<ExtArgs>
     book?: boolean | BookDefaultArgs<ExtArgs>
@@ -3548,6 +3556,7 @@ export namespace Prisma {
     book_id?: boolean
     borrowed_at?: boolean
     due_date?: boolean
+    is_returned?: boolean
     returned_at?: boolean
     member?: boolean | MemberDefaultArgs<ExtArgs>
     book?: boolean | BookDefaultArgs<ExtArgs>
@@ -3559,6 +3568,7 @@ export namespace Prisma {
     book_id?: boolean
     borrowed_at?: boolean
     due_date?: boolean
+    is_returned?: boolean
     returned_at?: boolean
     member?: boolean | MemberDefaultArgs<ExtArgs>
     book?: boolean | BookDefaultArgs<ExtArgs>
@@ -3570,10 +3580,11 @@ export namespace Prisma {
     book_id?: boolean
     borrowed_at?: boolean
     due_date?: boolean
+    is_returned?: boolean
     returned_at?: boolean
   }
 
-  export type BookLoanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"book_loan_id" | "member_id" | "book_id" | "borrowed_at" | "due_date" | "returned_at", ExtArgs["result"]["bookLoan"]>
+  export type BookLoanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"book_loan_id" | "member_id" | "book_id" | "borrowed_at" | "due_date" | "is_returned" | "returned_at", ExtArgs["result"]["bookLoan"]>
   export type BookLoanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     member?: boolean | MemberDefaultArgs<ExtArgs>
     book?: boolean | BookDefaultArgs<ExtArgs>
@@ -3599,6 +3610,7 @@ export namespace Prisma {
       book_id: number
       borrowed_at: Date
       due_date: Date
+      is_returned: boolean
       returned_at: Date | null
     }, ExtArgs["result"]["bookLoan"]>
     composites: {}
@@ -4030,6 +4042,7 @@ export namespace Prisma {
     readonly book_id: FieldRef<"BookLoan", 'Int'>
     readonly borrowed_at: FieldRef<"BookLoan", 'DateTime'>
     readonly due_date: FieldRef<"BookLoan", 'DateTime'>
+    readonly is_returned: FieldRef<"BookLoan", 'Boolean'>
     readonly returned_at: FieldRef<"BookLoan", 'DateTime'>
   }
     
@@ -4487,6 +4500,7 @@ export namespace Prisma {
     book_id: 'book_id',
     borrowed_at: 'borrowed_at',
     due_date: 'due_date',
+    is_returned: 'is_returned',
     returned_at: 'returned_at'
   };
 
@@ -4711,6 +4725,7 @@ export namespace Prisma {
     book_id?: IntFilter<"BookLoan"> | number
     borrowed_at?: DateTimeFilter<"BookLoan"> | Date | string
     due_date?: DateTimeFilter<"BookLoan"> | Date | string
+    is_returned?: BoolFilter<"BookLoan"> | boolean
     returned_at?: DateTimeNullableFilter<"BookLoan"> | Date | string | null
     member?: XOR<MemberScalarRelationFilter, MemberWhereInput>
     book?: XOR<BookScalarRelationFilter, BookWhereInput>
@@ -4722,6 +4737,7 @@ export namespace Prisma {
     book_id?: SortOrder
     borrowed_at?: SortOrder
     due_date?: SortOrder
+    is_returned?: SortOrder
     returned_at?: SortOrderInput | SortOrder
     member?: MemberOrderByWithRelationInput
     book?: BookOrderByWithRelationInput
@@ -4736,6 +4752,7 @@ export namespace Prisma {
     book_id?: IntFilter<"BookLoan"> | number
     borrowed_at?: DateTimeFilter<"BookLoan"> | Date | string
     due_date?: DateTimeFilter<"BookLoan"> | Date | string
+    is_returned?: BoolFilter<"BookLoan"> | boolean
     returned_at?: DateTimeNullableFilter<"BookLoan"> | Date | string | null
     member?: XOR<MemberScalarRelationFilter, MemberWhereInput>
     book?: XOR<BookScalarRelationFilter, BookWhereInput>
@@ -4747,6 +4764,7 @@ export namespace Prisma {
     book_id?: SortOrder
     borrowed_at?: SortOrder
     due_date?: SortOrder
+    is_returned?: SortOrder
     returned_at?: SortOrderInput | SortOrder
     _count?: BookLoanCountOrderByAggregateInput
     _avg?: BookLoanAvgOrderByAggregateInput
@@ -4764,6 +4782,7 @@ export namespace Prisma {
     book_id?: IntWithAggregatesFilter<"BookLoan"> | number
     borrowed_at?: DateTimeWithAggregatesFilter<"BookLoan"> | Date | string
     due_date?: DateTimeWithAggregatesFilter<"BookLoan"> | Date | string
+    is_returned?: BoolWithAggregatesFilter<"BookLoan"> | boolean
     returned_at?: DateTimeNullableWithAggregatesFilter<"BookLoan"> | Date | string | null
   }
 
@@ -4884,6 +4903,7 @@ export namespace Prisma {
   export type BookLoanCreateInput = {
     borrowed_at: Date | string
     due_date: Date | string
+    is_returned?: boolean
     returned_at?: Date | string | null
     member: MemberCreateNestedOneWithoutBookLoansInput
     book: BookCreateNestedOneWithoutBookLoansInput
@@ -4895,12 +4915,14 @@ export namespace Prisma {
     book_id: number
     borrowed_at: Date | string
     due_date: Date | string
+    is_returned?: boolean
     returned_at?: Date | string | null
   }
 
   export type BookLoanUpdateInput = {
     borrowed_at?: DateTimeFieldUpdateOperationsInput | Date | string
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_returned?: BoolFieldUpdateOperationsInput | boolean
     returned_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     member?: MemberUpdateOneRequiredWithoutBookLoansNestedInput
     book?: BookUpdateOneRequiredWithoutBookLoansNestedInput
@@ -4912,6 +4934,7 @@ export namespace Prisma {
     book_id?: IntFieldUpdateOperationsInput | number
     borrowed_at?: DateTimeFieldUpdateOperationsInput | Date | string
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_returned?: BoolFieldUpdateOperationsInput | boolean
     returned_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -4921,12 +4944,14 @@ export namespace Prisma {
     book_id: number
     borrowed_at: Date | string
     due_date: Date | string
+    is_returned?: boolean
     returned_at?: Date | string | null
   }
 
   export type BookLoanUpdateManyMutationInput = {
     borrowed_at?: DateTimeFieldUpdateOperationsInput | Date | string
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_returned?: BoolFieldUpdateOperationsInput | boolean
     returned_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -4936,6 +4961,7 @@ export namespace Prisma {
     book_id?: IntFieldUpdateOperationsInput | number
     borrowed_at?: DateTimeFieldUpdateOperationsInput | Date | string
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_returned?: BoolFieldUpdateOperationsInput | boolean
     returned_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -5145,6 +5171,7 @@ export namespace Prisma {
     book_id?: SortOrder
     borrowed_at?: SortOrder
     due_date?: SortOrder
+    is_returned?: SortOrder
     returned_at?: SortOrder
   }
 
@@ -5160,6 +5187,7 @@ export namespace Prisma {
     book_id?: SortOrder
     borrowed_at?: SortOrder
     due_date?: SortOrder
+    is_returned?: SortOrder
     returned_at?: SortOrder
   }
 
@@ -5169,6 +5197,7 @@ export namespace Prisma {
     book_id?: SortOrder
     borrowed_at?: SortOrder
     due_date?: SortOrder
+    is_returned?: SortOrder
     returned_at?: SortOrder
   }
 
@@ -5474,6 +5503,7 @@ export namespace Prisma {
   export type BookLoanCreateWithoutMemberInput = {
     borrowed_at: Date | string
     due_date: Date | string
+    is_returned?: boolean
     returned_at?: Date | string | null
     book: BookCreateNestedOneWithoutBookLoansInput
   }
@@ -5483,6 +5513,7 @@ export namespace Prisma {
     book_id: number
     borrowed_at: Date | string
     due_date: Date | string
+    is_returned?: boolean
     returned_at?: Date | string | null
   }
 
@@ -5521,12 +5552,14 @@ export namespace Prisma {
     book_id?: IntFilter<"BookLoan"> | number
     borrowed_at?: DateTimeFilter<"BookLoan"> | Date | string
     due_date?: DateTimeFilter<"BookLoan"> | Date | string
+    is_returned?: BoolFilter<"BookLoan"> | boolean
     returned_at?: DateTimeNullableFilter<"BookLoan"> | Date | string | null
   }
 
   export type BookLoanCreateWithoutBookInput = {
     borrowed_at: Date | string
     due_date: Date | string
+    is_returned?: boolean
     returned_at?: Date | string | null
     member: MemberCreateNestedOneWithoutBookLoansInput
   }
@@ -5536,6 +5569,7 @@ export namespace Prisma {
     member_id: number
     borrowed_at: Date | string
     due_date: Date | string
+    is_returned?: boolean
     returned_at?: Date | string | null
   }
 
@@ -5662,12 +5696,14 @@ export namespace Prisma {
     book_id: number
     borrowed_at: Date | string
     due_date: Date | string
+    is_returned?: boolean
     returned_at?: Date | string | null
   }
 
   export type BookLoanUpdateWithoutMemberInput = {
     borrowed_at?: DateTimeFieldUpdateOperationsInput | Date | string
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_returned?: BoolFieldUpdateOperationsInput | boolean
     returned_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     book?: BookUpdateOneRequiredWithoutBookLoansNestedInput
   }
@@ -5677,6 +5713,7 @@ export namespace Prisma {
     book_id?: IntFieldUpdateOperationsInput | number
     borrowed_at?: DateTimeFieldUpdateOperationsInput | Date | string
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_returned?: BoolFieldUpdateOperationsInput | boolean
     returned_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -5685,6 +5722,7 @@ export namespace Prisma {
     book_id?: IntFieldUpdateOperationsInput | number
     borrowed_at?: DateTimeFieldUpdateOperationsInput | Date | string
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_returned?: BoolFieldUpdateOperationsInput | boolean
     returned_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -5693,12 +5731,14 @@ export namespace Prisma {
     member_id: number
     borrowed_at: Date | string
     due_date: Date | string
+    is_returned?: boolean
     returned_at?: Date | string | null
   }
 
   export type BookLoanUpdateWithoutBookInput = {
     borrowed_at?: DateTimeFieldUpdateOperationsInput | Date | string
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_returned?: BoolFieldUpdateOperationsInput | boolean
     returned_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     member?: MemberUpdateOneRequiredWithoutBookLoansNestedInput
   }
@@ -5708,6 +5748,7 @@ export namespace Prisma {
     member_id?: IntFieldUpdateOperationsInput | number
     borrowed_at?: DateTimeFieldUpdateOperationsInput | Date | string
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_returned?: BoolFieldUpdateOperationsInput | boolean
     returned_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -5716,6 +5757,7 @@ export namespace Prisma {
     member_id?: IntFieldUpdateOperationsInput | number
     borrowed_at?: DateTimeFieldUpdateOperationsInput | Date | string
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_returned?: BoolFieldUpdateOperationsInput | boolean
     returned_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 

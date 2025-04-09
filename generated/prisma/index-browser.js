@@ -139,6 +139,7 @@ exports.Prisma.BookLoanScalarFieldEnum = {
   book_id: 'book_id',
   borrowed_at: 'borrowed_at',
   due_date: 'due_date',
+  is_returned: 'is_returned',
   returned_at: 'returned_at'
 };
 
