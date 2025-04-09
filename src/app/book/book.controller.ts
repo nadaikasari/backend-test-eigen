@@ -1,35 +1,25 @@
 import { Controller, Get, Post, Body, Param, Patch, Delete, Query, DefaultValuePipe, ParseIntPipe } from '@nestjs/common';
-import { BookService } from './book.service';
+import { FindAllBooksUseCase } from './use-cases/find-all-books.use-case';
+import { CreateBookUseCase } from './use-cases/create-book.use-case';
+import { BookDto } from './dto/book.dto';
 
 @Controller('/api/book')
 export class BookController {
-  constructor(private readonly bookService: BookService) {}
-
-  @Post()
-  create(@Body() dto: any) {
-    return this.bookService.create(dto);
-  }
+  constructor(
+    private readonly findAllBooksUseCase: FindAllBooksUseCase,
+    private readonly createBookUseCase: CreateBookUseCase,
+  ) {}
 
   @Get()
   findAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
   ) {
-    return this.bookService.findAll(page, limit);
-  }
-  
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bookService.findById(+id);
+    return this.findAllBooksUseCase.execute(page, limit);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() dto: any) {
-    return this.bookService.update(+id, dto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.bookService.delete(+id);
+  @Post()
+  create(@Body() dto: BookDto) {
+    return this.createBookUseCase.execute(dto);
   }
 }

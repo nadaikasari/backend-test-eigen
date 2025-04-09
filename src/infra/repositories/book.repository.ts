@@ -8,9 +8,16 @@ export class PrismaBookRepository implements BookRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(data: Omit<Book, 'book_id'>): Promise<Book> {
-    const created = await this.prisma.book.create({ data });
-    return new Book(created.book_id, created.book_code, created.title, created.author, created.stock);
-  }
+    const created = await this.prisma.book.create({
+      data: {
+        book_code: data.book_code,
+        title: data.title,
+        author: data.author,
+        stock: Number(data.stock),  // Ensure stock is passed as a number
+      },
+    });
+    return created;
+  }  
 
   async findAll(
     page = 1,
