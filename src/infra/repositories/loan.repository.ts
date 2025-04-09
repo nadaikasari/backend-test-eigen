@@ -11,6 +11,7 @@ export class PrismaLoanRepository implements LoanRepository {
     const member = await this.getValidMember(dto.member_code);
     const book = await this.getAvailableBook(dto.book_code);
     await this.validateLoanConstraints(member.member_id, book);
+    await this.ensureBookNotAlreadyBorrowed(member.member_id, book.book_id);
   
     const borrowedAt = new Date();
     const dueDate = this.calculateDueDate(borrowedAt);
@@ -78,6 +79,20 @@ export class PrismaLoanRepository implements LoanRepository {
   
     return book;
   }
+
+  private async ensureBookNotAlreadyBorrowed(memberId: number, bookId: number) {
+    const existingLoan = await this.prisma.bookLoan.findFirst({
+      where: {
+        member_id: memberId,
+        book_id: bookId,
+        is_returned: false,
+      },
+    });
+  
+    if (existingLoan) {
+      throw new BadRequestException('This book is currently borrowed by the member');
+    }
+  }  
   
   private async validateLoanConstraints(memberId: number, book: any) {
     const activeLoans = await this.prisma.bookLoan.count({
