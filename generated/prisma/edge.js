@@ -174,11 +174,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://nada:secretpassword@localhost:5432/nest_backend?schema=public"
+        "value": null
       }
     }
   },
