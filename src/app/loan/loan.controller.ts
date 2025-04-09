@@ -1,17 +1,22 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { LoanService } from './loan.service';
+import { BookLoanDto } from './dto/loan.dto';
+import { BorrowBookUseCase } from './use-cases/borrow-book.use-case';
+import { ReturnBookUseCase } from './use-cases/return-book.use-case';
 
 @Controller('/api/loan')
 export class LoanController {
-    constructor(private readonly loanService: LoanService) {}
+  constructor(
+    private readonly borrowBookUseCase: BorrowBookUseCase,
+    private readonly returnBookUseCase: ReturnBookUseCase,
+  ) {}
 
-    @Post()
-    borrow(@Body() dto: any) {
-        return this.loanService.borrow(dto);
-    }
+  @Post()
+  async borrow(@Body() dto: BookLoanDto) {
+    return this.borrowBookUseCase.execute(dto);
+  }
 
-    @Post('/return')
-    returnBook(@Body() dto: any) {
-        return this.loanService.returnBook(dto);
-    }
+  @Post('/return')
+  async returnBook(@Body() dto: BookLoanDto) {
+    return this.returnBookUseCase.execute(dto);
+  }
 }
