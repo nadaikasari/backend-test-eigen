@@ -2,22 +2,22 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Book } from '../../domain/book/entities/book.entity';
 import { BookRepository } from '../../domain/book/repositories/book.repository';
+import { BookDto } from 'src/app/book/dto/book.dto';
 
 @Injectable()
 export class PrismaBookRepository implements BookRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(data: Omit<Book, 'book_id'>): Promise<Book> {
-    const created = await this.prisma.book.create({
+  async create(dto: BookDto): Promise<any> {
+    return this.prisma.book.create({
       data: {
-        book_code: data.book_code,
-        title: data.title,
-        author: data.author,
-        stock: Number(data.stock),  // Ensure stock is passed as a number
+        book_code: dto.book_code,
+        title: dto.title,
+        author: dto.author,
+        stock: Number(dto.stock),
       },
     });
-    return created;
-  }  
+  }
 
   async findAll(
     page = 1,
