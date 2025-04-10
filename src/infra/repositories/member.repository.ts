@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { MemberRepository } from 'src/domain/member/repositories/member.repository';
+import { CreateMemberDto } from 'src/app/member/dto/member.dto';
 
 @Injectable()
 export class PrismaMemberRepository implements MemberRepository {
@@ -26,5 +27,13 @@ export class PrismaMemberRepository implements MemberRepository {
       bookLoans: undefined, // remove or null if you prefer
     }));
   }
-  
+
+  async create(dto: CreateMemberDto): Promise<any> {
+    return this.prisma.member.create({
+      data: {
+        member_code: dto.member_code,
+        name: dto.name,
+      },
+    });
+  }
 }
