@@ -47,17 +47,23 @@ export class PrismaBookRepository implements BookRepository {
     }));
   }  
 
-  async findById(id: number): Promise<Book | null> {
-    const book = await this.prisma.book.findUnique({ where: { book_id: id } });
+  async findByCode(code: string): Promise<Book | null> {
+    const book = await this.prisma.book.findUnique({ where: { book_code: code } });
     return book ? new Book(book.book_id, book.book_code, book.title, book.author, book.stock) : null;
   }
-
-  async update(id: number, data: Partial<Book>): Promise<Book> {
-    const updated = await this.prisma.book.update({ where: { book_id: id }, data });
+  
+  async updateByCode(code: string, data: Partial<Book>): Promise<Book> {
+    const updated = await this.prisma.book.update({
+      where: { book_code: code },
+      data: {
+        ...data,
+        stock: data.stock !== undefined ? Number(data.stock) : undefined,
+      },
+    });
     return new Book(updated.book_id, updated.book_code, updated.title, updated.author, updated.stock);
   }
-
-  async delete(id: number): Promise<void> {
-    await this.prisma.book.delete({ where: { book_id: id } });
+  
+  async deleteByCode(code: string): Promise<void> {
+    await this.prisma.book.delete({ where: { book_code: code } });
   }
 }
